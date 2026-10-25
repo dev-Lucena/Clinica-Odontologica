@@ -1,0 +1,25 @@
+{
+  "name": "seu-sorriso-importa-api",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "postinstall": "prisma generate",
+    "migrate": "prisma migrate deploy",
+    "dev": "node --env-file=.env --watch src/server.js",
+    "start": "node src/server.js",
+    "seed": "node --env-file=.env prisma/seed.js",
+    "seed:prod": "node prisma/seed.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.0.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "prisma": "^6.0.0"
+  }
+}

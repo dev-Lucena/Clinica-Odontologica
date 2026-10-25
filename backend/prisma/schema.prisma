@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Tratamento {
+  id        Int        @id @default(autoincrement())
+  nome      String     @unique
+  consultas Consulta[]
+}
+
+model Paciente {
+  id        Int        @id @default(autoincrement())
+  nome      String
+  telefone  String     @unique
+  criadoEm  DateTime   @default(now())
+  consentimentoEm DateTime? // quando aceitou o uso dos dados (LGPD)
+  consultas Consulta[]
+}
+
+model Consulta {
+  id           Int        @id @default(autoincrement())
+  inicio       DateTime   @unique // o banco impede dois pacientes no mesmo horário
+  status       String     @default("PENDENTE")
+  criadaEm     DateTime   @default(now())
+  pacienteId   Int
+  tratamentoId Int
+  paciente     Paciente   @relation(fields: [pacienteId], references: [id])
+  tratamento   Tratamento @relation(fields: [tratamentoId], references: [id])
+}
