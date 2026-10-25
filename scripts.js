@@ -17,7 +17,7 @@ menu.querySelectorAll('a').forEach(link =>
 // Troque a URL de produção pelo endereço da sua API depois do deploy
 const API = ['localhost', '127.0.0.1'].includes(location.hostname)
     ? 'http://localhost:3000/api'
-    : 'https://https://clinica-sorriso-api.onrender.com
+    : 'https://clinica-sorriso-api.onrender.com/api'
 const WHATSAPP = 'https://wa.me/5562999999999'
 
 const form = document.querySelector('#form-agendamento')
